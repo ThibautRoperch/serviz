@@ -2,16 +2,19 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+const home = require('./front/home')
+const charts = require('./api/charts')
+
 const app = express()
 
 // Middleware
 app.use(bodyParser.json())
 app.use(cors())
 
-const posts = require('./routes/api/posts')
+// Routers
+app.use('/', home)
+app.use('/api/charts', charts)
 
-app.use('/api/posts', posts)
-
-const port = process.env.PORT || 5000
-
-app.listen(port, () => console.log(`Server started on port ${port}`))
+// Listen
+const port = 5000
+app.listen(port, () => console.log(`Server listening on the port ${port}`))
