@@ -7,10 +7,12 @@ const router = express.Router()
 router.get('/', async (req, res) => {
   const charts = await loadchartsCollection()
   try {
+    let filter = {}
+    if (req.query.clientIP) filter.clientIP = req.query.clientIP
     let limit = parseInt(req.query.limit) || 10
-    res.send(await charts.find({}).sort({ $natural: -1 }).limit(limit).toArray())
+    res.send(await charts.find(filter).sort({ $natural: -1 }).limit(limit).toArray())
   } catch (e) {
-    res.send("Unable to load the collection")
+    res.status(500).send("Unable to load the collection")
   }
 })
 
@@ -20,11 +22,12 @@ router.post('/', async (req, res) => {
   try {
     await charts.insertOne({
       ...req.body,
-      createdAt: new Date()
+      createdAt: new Date(),
+      clientIP: req.ip.match(/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/)
     })
     res.status(201).send()
   } catch (e) {
-    res.send("Unable to load the collection")
+    res.status(500).send("Unable to load the collection")
   }
 })
 
@@ -35,7 +38,7 @@ router.delete('/:id', async (req, res) => {
     await charts.deleteOne({ _id: new mongodb.ObjectID(req.params.id) })
     res.status(200).send()
   } catch (e) {
-    res.send("Unable to load the collection")
+    res.status(500).send("Unable to load the collection")
   }
 })
 
@@ -43,7 +46,7 @@ async function loadchartsCollection() {
   let client
 
   try {
-    client = await mongodb.MongoClient.connect('mongodb://localhost:32774/', {
+    client = await mongodb.MongoClient.connect('mongodb://localhost:32776/', {
       useNewUrlParser: true
     })
   } catch (e) {
