@@ -1,0 +1,16 @@
+{
+  "inputs": {
+    "mongo_db": {
+      "address": "localhost",
+      "port": 32778
+    }
+  },
+  "outputs": {
+    "api": {
+      "port": 5000
+    },
+    "gui": {
+      "port": 8080
+    }
+  }
+}

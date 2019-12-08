@@ -1,0 +1,13 @@
+{
+  "name": "serviz",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run serve"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  }
+}
