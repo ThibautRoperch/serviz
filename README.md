@@ -69,9 +69,12 @@ Example of configuration :
 
 ## Usage
 
-Send your datas to the server
+Send your datas to the server (both POST or GET methods are supported)
 
     localhost:5000/api/charts
+
+    // TODO GET example
+    // TODO POST example
 
 Vizualise your chart
 

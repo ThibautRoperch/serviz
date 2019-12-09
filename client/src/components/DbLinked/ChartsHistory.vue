@@ -75,12 +75,10 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  overflow-y: auto;
-}
-
 ul {
   list-style: none;
+  /* overflow-y: auto;
+  overflow-x: hidden; */
 }
 
 ul li {

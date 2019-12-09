@@ -71,6 +71,7 @@ export default {
 
 <style scoped>
 .chart {
+  flex: 1;
   align-self: flex-end;
 }
 </style>

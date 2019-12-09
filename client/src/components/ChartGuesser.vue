@@ -13,6 +13,19 @@
 </template>
 
 <script>
+
+/*
+TODO
+
+An object/arrey containg properties of each chart type
+Display the chart who verified all of the prperties or the one who gets the most of true values
+
+Example : donut requirements
+[this.givenChartDatas.labels, this.chartSeries.length === 1]
+
+*/
+
+
 import VueApexCharts from 'vue-apexcharts'
 
 export default {
@@ -78,7 +91,7 @@ export default {
       return this.givenChartDatas.x || this.givenChartDatas.xaxis || this.givenChartDatas.labels || []
     },
     chartHeight() {
-      return this.thumbnail ? 150 : 850
+      return this.thumbnail ? 150 : 800
     },
     gridChartOptions() {
       return {

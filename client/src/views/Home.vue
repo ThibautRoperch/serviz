@@ -22,6 +22,7 @@
       <LastChart :clientIP="componentsClientIP" :key="lastChartKey" />
     </section>
 
+
   </div>
 </template>
 
@@ -133,7 +134,7 @@ section {
   flex-direction: row;
   justify-content: center;
   align-self: stretch;
-  padding: 2rem;
+  padding: 0 2rem;
   transition: var(--transition);
 }
 </style>
