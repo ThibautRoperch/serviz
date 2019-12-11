@@ -2,7 +2,7 @@
   "inputs": {
     "mongo_db": {
       "address": "localhost",
-      "port": 32779
+      "port": 32771
     }
   },
   "outputs": {

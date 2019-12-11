@@ -21,10 +21,13 @@ An object/arrey containg properties of each chart type
 Display the chart who verified all of the prperties or the one who gets the most of true values
 
 Example : donut requirements
-[this.givenChartDatas.labels, this.chartSeries.length === 1]
+[this.givenChartData.labels, this.chartSeries.length === 1]
 
 */
 
+/*
+MomentJS for the title date
+*/
 
 import VueApexCharts from 'vue-apexcharts'
 
@@ -33,7 +36,7 @@ export default {
     apexchart: VueApexCharts
   },
   props: {
-    givenChartDatas: Object,
+    givenChartData: Object,
     thumbnail: { type: Boolean, default: false }
   },
   data() {
@@ -54,7 +57,7 @@ export default {
       return type
     },
     classicChartSeries() {
-      let series = this.givenChartDatas.y || this.givenChartDatas.series || []
+      let series = this.givenChartData.y || this.givenChartData.series || []
       return series
     },
     chartSeries() {
@@ -63,8 +66,8 @@ export default {
       // Pas de valeurs par défaut => index personnalisés
       // Sinon, valeurs par défaut => index connus
       if (series.length === 0) {
-        for (let name in this.givenChartDatas) {
-          let value = this.givenChartDatas[name]
+        for (let name in this.givenChartData) {
+          let value = this.givenChartData[name]
           if (Array.isArray(value) && value != this.chartXaxis) {
             series.push({
               name: name,
@@ -88,10 +91,10 @@ export default {
       return series
     },
     chartXaxis() {
-      return this.givenChartDatas.x || this.givenChartDatas.xaxis || this.givenChartDatas.labels || []
+      return this.givenChartData.x || this.givenChartData.xaxis || this.givenChartData.labels || []
     },
     chartHeight() {
-      return this.thumbnail ? 150 : 800
+      return this.thumbnail ? 150 : 850
     },
     gridChartOptions() {
       return {
@@ -143,7 +146,7 @@ export default {
           }
         },
         title: {
-          text: '',
+          text: this.givenChartData.createdAt,
           align: 'center',
           offsetY: 20,
           style: {
@@ -204,11 +207,14 @@ export default {
           enabled: false
         }
       }
-      options.chart.toolbar.show = false
+      
       options.theme.mode = 'light'
+      options.chart.toolbar.show = false
       options.chart.zoom.enabled = false
+      options.title.style.fontSize = '10px'
       options.legend.show = false
       options.dataLabels.enabled = false
+
       return options
     }
   },

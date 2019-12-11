@@ -1,19 +1,8 @@
 <template>
   <div id="app">
-    <Home />
+    <router-view/>
   </div>
 </template>
-
-<script>
-import Home from '@/views/Home.vue'
-
-export default {
-  name: 'app',
-  components: {
-    Home
-  }
-}
-</script>
 
 <style>
 * {
@@ -28,5 +17,6 @@ export default {
   text-align: center;
   color: var(--text-color);
   background: var(--dark-bg);
+  overflow: hidden;
 }
 </style>

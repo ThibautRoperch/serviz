@@ -15,7 +15,7 @@
 <style scoped>
 div {
   margin: auto;
-  background: var(--main-bg);
+  background: var(--bg-primary);
   box-shadow: var(--box-shadow);
 }
 

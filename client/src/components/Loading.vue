@@ -17,6 +17,6 @@ export default {
 <style scoped>
 .spinner {
   transform: scale(2);
-  opacity: 0.1;
+  opacity: 0.4;
 }
 </style>

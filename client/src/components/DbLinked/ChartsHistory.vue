@@ -11,7 +11,7 @@
       <ul>
         <li class="chart" v-for="chart in charts" v-bind:key="chart._id">
           <!-- {{ formattedDate(chart.createdAt) }} -->
-          <ChartGuesser :givenChartDatas="chart" :thumbnail="true" />
+          <ChartGuesser :givenChartData="chart" :thumbnail="true" />
         </li>
       </ul>
     </div>

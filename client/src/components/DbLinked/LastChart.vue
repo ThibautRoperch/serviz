@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="[ 'container', { 'minimized' : minimize } ]">
 
     <Loading v-if="loading" />
 
@@ -7,8 +7,8 @@
       {{ networkError }}
     </NetworkError>
 
-    <div class="chart" v-else-if="currentChart">
-      <ChartGuesser :givenChartDatas="currentChart" />
+    <div class="chart" v-else-if="currentChartData">
+      <ChartGuesser :givenChartData="currentChartData" :thumbnail="minimize" />
     </div>
 
     <NoCharts v-else />
@@ -32,13 +32,14 @@ export default {
     ChartGuesser
   },
   props: {
+    minimize: { type: Boolean, default: false },
     clientIP: { type: String, default: null }
   },
   data() {
     return {
       loading: true,
       networkError: false,
-      currentChart: null
+      currentChartData: null
     }
   },
   mounted() {
@@ -49,8 +50,8 @@ export default {
     getLastChart() {
       ChartsService.getLastChart(this.clientIP)
         .then(res => {
-          if ((!this.currentChart || !res) || (this.currentChart && res && this.currentChart._id !== res._id)) {
-            this.currentChart = res
+          if ((!this.currentChartData || !res) || (this.currentChartData && res && this.currentChartData._id !== res._id)) {
+            this.currentChartData = res
           }
         })
         .catch((e) => {

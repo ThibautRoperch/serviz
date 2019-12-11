@@ -6,7 +6,7 @@ input {
   font-size: 1rem;
   background: transparent;
   border: none;
-  border: 2px solid var(--main-bg);
+  border: 2px solid var(--bg-primary);
 }
 
 input:disabled {
@@ -22,12 +22,12 @@ input[type=checkbox] + label {
   align-items: center;
   padding: 0 .5rem;
   color: transparent;
-  border: 2px solid var(--main-bg);
+  border: 2px solid var(--bg-primary);
   cursor: pointer;
   background: transparent;
 }
 
 input[type=checkbox]:checked + label {
   color: var(--text-color);
-  background: var(--main-bg);
+  background: var(--bg-primary);
 }
