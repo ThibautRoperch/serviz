@@ -47,12 +47,19 @@ export default {
     }
   },
   mounted() {
-    this.getCharts()
+    this.loading = true
+    this.fetchCharts()
     this.autoRefresh()
   },
+  watch: {
+    clientIP: function() {
+      this.loading = true
+      this.fetchCharts()
+    }
+  },
   methods: {
-    getCharts() {
-      ChartsService.getCharts(this.clientIP)
+    fetchCharts() {
+      ChartsService.fetchCharts(this.clientIP)
         .then(res => {
           if ((this.charts.length === 0 || res.length === 0) || (this.charts.length > 0 && res.length > 0 && this.charts[0]._id !== res[0]._id)) {
             this.charts = res
@@ -67,7 +74,7 @@ export default {
     },
     autoRefresh() {
       setInterval(() => {
-        this.getCharts()
+        this.fetchCharts()
       }, 1000)
     }
   }

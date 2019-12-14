@@ -12,7 +12,7 @@ class ChartsService {
       })
   }
 
-  static getCharts(clientIP) {
+  static fetchCharts(clientIP) {
     let query = ""
     if (clientIP) query = `?clientIP=${clientIP}`
     return axios.get(`${url}${query}`)
@@ -30,13 +30,6 @@ class ChartsService {
 
   static deleteChart(id) {
     return axios.delete(`${url}${id}`)
-  }
-
-  static getClientIP() {
-    return axios.get('https://cors-anywhere.herokuapp.com/http://api.ipify.org/?format=json')
-      .then(res => {
-        return res.data
-      })
   }
 }
 

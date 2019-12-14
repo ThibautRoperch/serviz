@@ -16,6 +16,16 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/:chartId', async (req, res) => {
+  const charts = await loadchartsCollection()
+  try {
+    let chartId = req.params.chartId
+    res.send(await charts.find({ _id: new mongodb.ObjectID(chartId) }).toArray())
+  } catch (e) {
+    res.status(500).send("Error loading the collection : ", e)
+  }
+})
+
 // Add chart
 router.post('/', async (req, res) => {
   const charts = await loadchartsCollection()

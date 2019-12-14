@@ -211,7 +211,8 @@ export default {
       options.theme.mode = 'light'
       options.chart.toolbar.show = false
       options.chart.zoom.enabled = false
-      options.title.style.fontSize = '10px'
+      // options.title.style.fontSize = '10px'
+      options.title.text = ''
       options.legend.show = false
       options.dataLabels.enabled = false
 

@@ -1,5 +1,5 @@
 <template>
-  <div :class="[ 'container', { 'minimized' : minimize } ]">
+  <div class="container">
 
     <Loading v-if="loading" />
 
@@ -7,8 +7,8 @@
       {{ networkError }}
     </NetworkError>
 
-    <div class="chart" v-else-if="currentChartData">
-      <ChartGuesser :givenChartData="currentChartData" :thumbnail="minimize" />
+    <div class="chart" v-else-if="chartData">
+      <ChartGuesser :givenChartData="chartData" :thumbnail="thumbnail" />
     </div>
 
     <NoCharts v-else />
@@ -32,27 +32,29 @@ export default {
     ChartGuesser
   },
   props: {
-    minimize: { type: Boolean, default: false },
-    clientIP: { type: String, default: null }
+    chartId: String,
+    thumbnail: { type: Boolean, default: false }
   },
   data() {
     return {
       loading: true,
       networkError: false,
-      currentChartData: null
+      chartData: null
     }
   },
   mounted() {
-    this.getLastChart()
-    this.autoRefresh()
+    this.getChart()
+  },
+  watch: {
+    chartId: function() {
+      this.getChart()
+    }
   },
   methods: {
-    getLastChart() {
-      ChartsService.getLastChart(this.clientIP)
+    getChart() {
+      ChartsService.getChart(this.chartId)
         .then(res => {
-          if ((!this.currentChartData || !res) || (this.currentChartData && res && this.currentChartData._id !== res._id)) {
-            this.currentChartData = res
-          }
+          this.chartData = res
         })
         .catch((e) => {
           this.networkError = e
@@ -60,19 +62,11 @@ export default {
         .finally(() => {
           this.loading = false
         })
-    },
-    autoRefresh() {
-      setInterval(() => {
-        this.getLastChart()
-      }, 1000)
     }
   }
 }
 </script>
 
-<style scoped>
-.chart {
-  flex: 1;
-  align-self: flex-end;
-}
+<style>
+
 </style>
