@@ -1,0 +1,11 @@
+
+* {
+  --text-color: rgb(216, 216, 216);
+  --dark-bg: #161e25;
+  --bg-primary: brown;
+  --bg-secondary: #0c1116;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --rgba-dark: rgba(0, 0, 0, 0.85);
+  --rgba-light: rgba(255, 255, 255, 0.7);
+  --transition: all .2s ease;
+}
